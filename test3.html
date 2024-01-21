@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input Validation</title>
+</head>
+<body>
+
+<input type="text" id="inputField" oninput="validateInput()">
+
+<script>
+function countOccurrences(str, char) {
+  return str.split(char).length - 1;
+}
+
+function validateInput() {
+  let inputField = document.getElementById("inputField");
+  let inputValue = inputField.value;
+
+  if (countOccurrences(inputValue, '.') > 1) {
+    alert("You cannot enter another '.' in the number.");
+    inputField.value = inputValue.slice(0, -1); // Remove the last character
+  }
+}
+</script>
+
+</body>
+</html>

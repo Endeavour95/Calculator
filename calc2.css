@@ -1,0 +1,74 @@
+table { 
+    border:none;
+    border-radius: 50px;
+    box-shadow: 0 0 20px rgb(153, 151, 151);
+    margin-top: 40px;
+    margin-left: auto; 
+    margin-right: auto; 
+    height: auto;
+    padding: 15px;
+    background-color: rgba(117, 117, 117, 0.5);
+} 
+  
+input[type="button"] { 
+    box-shadow: 0 0 20px rgb(153, 151, 151);
+    color: black; 
+    font-size: 30px; 
+    font-weight: bold; 
+    border: none; 
+    margin: 5px 5px;
+    border-radius: 50px;  
+    text-shadow: 2px 2px 4px #000000;  
+    /* background-color:aliceblue;  */
+} 
+  
+input[type="text"] { 
+    box-shadow: 0 0 10px rgb(153, 151, 151);
+    width: 280px;
+    min-height: 60px;
+    height: auto;
+    margin: 5px 5px;
+    font-size: 24px; 
+    font-weight: bold; 
+    border: none; 
+    border-radius: 50px; 
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: not-allowed;
+    /* background-color:azure; */
+}
+
+input[value="C"]:hover {
+    color: white;
+    background-color: rgba(207, 90, 90, 0.5);
+    text-shadow: 4px 4px 4px #000000;
+}
+
+input[value="⌫"]:hover {
+    color: white;
+    background-color: rgba(71, 150, 196, 0.5);
+    text-shadow: 4px 4px 4px #000000;
+}
+
+input[value="="]:hover {
+    color: white;
+    background-color: rgba(111, 180, 111, 0.5);
+    text-shadow: 4px 4px 4px #000000;
+}
+
+td input[type="button"] {
+    width: 70px;
+    height: 60px;
+}
+
+input[type="button"]:hover {
+    cursor: pointer;
+
+    animation: mymove 5s infinite;
+  }
+  
+  @keyframes mymove {
+    50% {text-shadow: 10px 20px 30px #000000;
+    font-size: 32px;
+    }
+  }
