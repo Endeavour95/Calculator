@@ -26,6 +26,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function display(val) {
         if (val == "=") {
+            // let  = [];
+            // res = evaluateExpression().split[''];
+
+            // if (res[0] == '-') {
+            //     updateData(0);
+            //     res.forEach(element => {
+            //         updateData(element);
+            //     });
+            // }
+            // resultInput.value = arrstr.join('');
+
+            // resultInput.value = arrstr.join('');
+
             resultInput.value = evaluateExpression();
         } else {
             resultInput.value = arrstr.join('');
@@ -55,41 +68,106 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Calculate result based on operator precedence (BODMAS)
 
-        operatorsPrecedence.forEach(operator => {
-            let index = 0;
-            while (data.operators.includes(operator)) {
-                index = data.operators.indexOf(operator, index);
-                // while (data.operators.length > 0) {            
-                //     index = data.operators.indexOf('%', index);
-                // const operator = data.operators[0];
-                // const index = data.operators.indexOf(operator);
-                const leftOperand = data.numbers[index];
-                const rightOperand = data.numbers[index + 1];
-                let result;
+        continues(temparr)
 
-                switch (operator) {
-                    case '%':
-                        result = (leftOperand / 100) * rightOperand;
-                        break;
-                    case '*': // Multiply and divide before adding and subtracting
-                    case '/':
-                        result = operator === '*' ? leftOperand * rightOperand : leftOperand / rightOperand;
-                        break;
-                    case '+':
-                    case '-':
-                        result = operator === '+' ? leftOperand + rightOperand : leftOperand - rightOperand;
-                        break;
-                    default:
-                        break;
+        function continues(params) {
+            operatorsPrecedence.forEach(operator => {
+                let index = 0;
+                while (data.operators.includes(operator)) {
+                    if (operator == "/") {
+                        index = data.operators.indexOf(operator, index);
+                        let temparr = data.operators.splice(0, index + 1);
+                        if (temparr.includes('*')) {
+                            
+                        }
+                    }
+    
+                    else {
+                        index = data.operators.indexOf(operator, index);
+                        const leftOperand = data.numbers[index];
+                        const rightOperand = data.numbers[index + 1];
+                        let result = calculate(operator, leftOperand, rightOperand);
+    
+    
+    
+                        // Update numbers and operators arrays with the result
+                        data.numbers.splice(index, 2, result);
+                        data.operators.splice(index, 1);
+                        index++;
+                    }
                 }
+            });
+        }
 
-                // Update numbers and operators arrays with the result
-                data.numbers.splice(index, 2, result);
-                data.operators.splice(index, 1);
-                index++;
+        function calculate(operator, leftOperand, rightOperand) {
+            switch (operator) {
+                case '%':
+                    return (leftOperand / 100) * rightOperand;
+                case '*': // Multiply and divide before adding and subtracting
+                case '/':
+                    return operator === '*' ? leftOperand * rightOperand : leftOperand / rightOperand;
+                case '+':
+                case '-':
+                    return operator === '+' ? leftOperand + rightOperand : leftOperand - rightOperand;
+                default:
+                    break;
             }
-        });
+        }
 
+        // const operatorsPrecedence = ['%', '/', '*', '+', '-'];
+
+        // // Calculate result based on operator precedence (BODMAS)
+
+        // operatorsPrecedence.forEach(operator => {
+        //     let index = 0;
+        //     while (data.operators.includes(operator)) {
+        //         index = data.operators.indexOf(operator, index);
+        //         // while (data.operators.length > 0) {            
+        //         //     index = data.operators.indexOf('%', index);
+        //         // const operator = data.operators[0];
+        //         // const index = data.operators.indexOf(operator);
+        //         const leftOperand = data.numbers[index];
+        //         const rightOperand = data.numbers[index + 1];
+        //         let result;
+
+        //         switch (operator) {
+        //             case '%':
+        //                 result = (leftOperand / 100) * rightOperand;
+        //                 break;
+        //             case '*': // Multiply and divide before adding and subtracting
+        //             case '/':
+        //                 result = operator === '*' ? leftOperand * rightOperand : leftOperand / rightOperand;
+        //                 break;
+        //             case '+':
+        //             case '-':
+        //                 result = operator === '+' ? leftOperand + rightOperand : leftOperand - rightOperand;
+        //                 break;
+        //             default:
+        //                 break;
+        //         }
+
+        //         // Update numbers and operators arrays with the result
+        //        data.numbers.splice(index, 2, result);
+        //        data.operators.splice(index, 1);
+        //         index++;
+        //     }
+        // });
+
+        arrstr = [];
+        // arrstr.push(data.numbers[0]);
+        // return arrstr.join('');
+
+        let res = data.numbers[0].toString();
+        let resarr = res.split('');
+
+        if (resarr[0] == '-') {
+            updateData(0);
+            resarr.forEach(element => {
+                updateData(element);
+            });
+        }
+
+        return arrstr.join('');
 
 
 
@@ -132,9 +210,6 @@ document.addEventListener("DOMContentLoaded", function () {
         // }
 
         // console.log("Result:", data.numbers[0]);
-        arrstr = [];
-        arrstr.push(data.numbers[0]);
-        return arrstr.join('');
     }
 
 
@@ -173,7 +248,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         }
                     }
                 } catch (error) {
-                    updateData(error);
+                    // updateData(error);
+                    // display(false);
+                    console.log(error);
                     display(false);
                 }
                 break;
